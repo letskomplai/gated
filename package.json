@@ -1,0 +1,56 @@
+{
+  "name": "@letskomplai/gated",
+  "version": "0.1.0",
+  "description": "A functional feature flagging library for Node.js",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "gated": "./dist/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./rules": {
+      "import": "./dist/rules/index.js",
+      "types": "./dist/rules/index.d.ts"
+    },
+    "./testing": {
+      "import": "./dist/testing/index.js",
+      "types": "./dist/testing/index.d.ts"
+    },
+    "./adapters/*": {
+      "import": "./dist/adapters/*.js",
+      "types": "./dist/adapters/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:run": "vitest run",
+    "lint": "biome src/**/*.ts",
+    "format": "biome --write src/**/*.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test:run"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.12.0",
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "prisma": "^6.12.0",
+    "table": "^6.9.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@types/node": "^24.1.0",
+    "@vitest/ui": "^3.2.4",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}
