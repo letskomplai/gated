@@ -1,6 +1,6 @@
 {
   "name": "@letskomplai/gated",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": "https://github.com/letskomplai/gated",
   "description": "A functional feature flagging library for Node.js",
   "type": "module",
