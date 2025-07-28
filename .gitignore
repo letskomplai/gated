@@ -146,4 +146,3 @@ vite.config.ts.timestamp-*
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 implementation.md
-.vscode

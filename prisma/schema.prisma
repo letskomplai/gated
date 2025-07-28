@@ -1,0 +1,36 @@
+// Should be copied to the main schema of the app.
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model FeatureFlag {
+    id               String             @id @default(cuid())
+    name             String             @unique
+    enabledForAll    Boolean            @default(false)
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+    FeatureFlagGrant FeatureFlagGrant[]
+
+    @@map("gated_feature_flags")
+}
+
+model FeatureFlagGrant {
+    id        String   @id @default(cuid())
+    flagId    String
+    subjectId String
+    enabled   Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    Flag FeatureFlag @relation(fields: [flagId], references: [id])
+
+    @@unique([flagId, subjectId])
+    @@index([flagId, subjectId])
+    @@map("gated_feature_flag_grants")
+}

@@ -1,5 +1,6 @@
 export { DatabaseAdapter } from "./adapters/base";
 export { MemoryAdapter } from "./adapters/memory";
+export { PrismaAdapter } from "./adapters/prisma";
 export {
   grantAccess,
   grantAccessBulk,
