@@ -24,8 +24,9 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "test:run": "vitest run",
-    "lint": "biome src/**/*.ts",
-    "format": "biome --write src/**/*.ts",
+    "lint": "biome lint src/**/*.ts",
+    "lint:fix": "biome lint --write src/**/*.ts",
+    "format": "biome format --write src/**/*.ts",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build && npm run test:run"
   },
