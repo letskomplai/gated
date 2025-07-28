@@ -170,6 +170,7 @@ export class PrismaAdapter implements DatabaseAdapter {
 						FeatureFlagGrant: {
 							some: {
 								subjectId,
+								enabled: true,
 							},
 						},
 					},
