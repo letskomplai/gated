@@ -160,15 +160,24 @@ export class PrismaAdapter implements DatabaseAdapter {
 	}
 
 	async getActiveFlags(subjectId: string): Promise<Flag[]> {
-		const grants = await this.prisma.featureFlagGrant.findMany({
+		const activeFlags = await this.prisma.featureFlag.findMany({
 			where: {
-				subjectId,
-			},
-			include: {
-				Flag: true,
+				OR: [
+					{
+						enabledForAll: true,
+					},
+					{
+						FeatureFlagGrant: {
+							some: {
+								subjectId,
+							},
+						},
+					},
+				],
 			},
 		});
-		return grants.map((grant) => grant.Flag);
+
+		return activeFlags;
 	}
 
 	createFlag(name: string): Promise<Flag> {
