@@ -1,21 +1,15 @@
 {
   "name": "@letskomplai/gated",
   "version": "0.1.0",
+  "repository": "https://github.com/letskomplai/gated",
   "description": "A functional feature flagging library for Node.js",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "gated": "./dist/cli/index.js"
-  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./adapters/*": {
-      "import": "./dist/adapters/*.js",
-      "types": "./dist/adapters/*.d.ts"
     }
   },
   "scripts": {
