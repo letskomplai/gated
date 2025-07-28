@@ -133,11 +133,16 @@ export class MemoryAdapter extends DatabaseAdapter {
   }
 
   async getActiveFlags(subjectId: string): Promise<Flag[]> {
-    return Promise.resolve(
-      Array.from(this.flags.values()).filter((flag) =>
-        this.isEnabled(flag.name, subjectId)
-      )
+    const flagStatuses = Array.from(this.flags.values()).map(async (flag) => {
+      const isEnabled = await this.isEnabled(flag.name, subjectId);
+      return { flag, isEnabled };
+    });
+    const activeFlags = await Promise.all(flagStatuses).then((flagStatuses) =>
+      flagStatuses
+        .filter((flagStatus) => flagStatus.isEnabled)
+        .map((flagStatus) => flagStatus.flag)
     );
+    return Promise.resolve(activeFlags);
   }
 
   clear(): void {

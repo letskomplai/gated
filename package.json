@@ -13,14 +13,6 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./rules": {
-      "import": "./dist/rules/index.js",
-      "types": "./dist/rules/index.d.ts"
-    },
-    "./testing": {
-      "import": "./dist/testing/index.js",
-      "types": "./dist/testing/index.d.ts"
-    },
     "./adapters/*": {
       "import": "./dist/adapters/*.js",
       "types": "./dist/adapters/*.d.ts"
